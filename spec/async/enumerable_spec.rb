@@ -5,7 +5,15 @@ RSpec.describe Async::Enumerable do
     expect(Async::Enumerable::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "async_each returns the collection" do
+    coll = 1.upto(3)
+    expect(coll.async_each {|v| sleep 0.0001 * v }).to eq(coll)
+  end
+
+  it "async_each takes the amount of time to process a single value" do
+    now = Time.now
+    1.upto(10).async_each {|v| sleep 0.1 }
+    t_diff = Time.now - now
+    expect(t_diff).to be < 0.2
   end
 end

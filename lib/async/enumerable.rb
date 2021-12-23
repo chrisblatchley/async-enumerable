@@ -7,7 +7,9 @@ module Async
   module Enumerable
     class Error < StandardError; end
 
-    def aeach(&proc)
+    # async_each creates an async task for the collection
+    # and runs tasks on the individual objects.
+    def async_each(&proc)
       Async do |task|
         self.each do |v|
           task.async do
@@ -15,7 +17,11 @@ module Async
           end
         end
       end
+
+      self
     end
 
   end
 end
+
+Enumerable.include(Async::Enumerable)
