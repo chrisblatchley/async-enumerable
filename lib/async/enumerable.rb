@@ -4,6 +4,8 @@ require_relative "enumerable/version"
 require "async"
 
 module Async
+  # Async::Enumerable is a mixin for ::Enumerable that adds
+  # async support to functions that is makes sense for.
   module Enumerable
     class Error < StandardError; end
 
@@ -11,7 +13,7 @@ module Async
     # and runs tasks on the individual objects.
     def async_each(&proc)
       Async do |task|
-        self.each do |v|
+        each do |v|
           task.async do
             proc.call(v)
           end
@@ -20,7 +22,6 @@ module Async
 
       self
     end
-
   end
 end
 
