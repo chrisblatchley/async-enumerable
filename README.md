@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-`Enumerable` methods have `async_` prepended where it makes sense. currently supports `#async_each` and will extend to others as needed.
+`Enumerable` methods have `_async` appended where it makes sense. currently supports `#each_async` and will extend to others as needed.
 
 ## Development
 

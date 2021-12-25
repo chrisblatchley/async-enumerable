@@ -9,9 +9,9 @@ module Async
   module Enumerable
     class Error < StandardError; end
 
-    # async_each creates an async task for the collection
+    # each_async creates an async task for the collection
     # and runs tasks on the individual objects.
-    def async_each(&proc)
+    def each_async(&proc)
       Async do |task|
         each do |v|
           task.async do
